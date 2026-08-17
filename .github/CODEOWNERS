@@ -1,0 +1,15 @@
+# Technical ownership / routing.
+# CODEOWNERS routes review; it does not replace discussion/pairing.
+
+# Backend and fiscal core
+/apps/api/ @RaphaelFeijoSalles @gustavobergz
+/rules/ @RaphaelFeijoSalles
+/docs/engineering/TAX_RULE_POLICY.md @RaphaelFeijoSalles
+
+# Product visuals / storytelling
+/apps/web/src/styles/ @sofimedeirosz @dudas00937
+/docs/brand/ @sofimedeirosz @dudas00937
+
+# Repository governance
+/.github/ @RaphaelFeijoSalles
+/AGENTS.md @RaphaelFeijoSalles

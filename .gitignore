@@ -1,0 +1,26 @@
+# env
+.env
+.env.*
+!.env.example
+
+# frontend
+node_modules/
+dist/
+.vite/
+
+# backend
+target/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# local
+tmp/
+uploads/
