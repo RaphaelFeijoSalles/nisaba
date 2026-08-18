@@ -3,6 +3,9 @@
 .env.*
 !.env.example
 
+# secrets
+**/secret.properties
+
 # frontend
 node_modules/
 dist/

@@ -1,12 +1,15 @@
 services:
   postgres:
     image: postgres:17
+
     environment:
       POSTGRES_DB: nisaba
       POSTGRES_USER: nisaba
       POSTGRES_PASSWORD: nisaba
+
     ports:
-      - "5432:5432"
+      - "9090:5432"
+
     volumes:
       - nisaba-postgres:/var/lib/postgresql/data
 

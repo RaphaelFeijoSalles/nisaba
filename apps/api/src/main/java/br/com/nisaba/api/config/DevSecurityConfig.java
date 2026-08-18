@@ -7,8 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@Profile("local")
-public class LocalSecurityConfig {
+@Profile("dev")
+public class DevSecurityConfig {
 
     @Bean
     SecurityFilterChain localSecurityFilterChain(HttpSecurity http) throws Exception {
