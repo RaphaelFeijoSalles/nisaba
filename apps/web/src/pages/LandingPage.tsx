@@ -1,38 +1,49 @@
 import { Link } from "react-router";
+import { ArrowRight, Sparkles } from "lucide-react";
+
+import { NisabaLogo } from "@/components/nisaba/logo";
+import { Button } from "@/components/ui/button";
 
 export function LandingPage() {
   return (
-    <main className="landing-page">
-      <nav className="landing-nav" aria-label="Navegação principal">
-        <Link className="brand-mark" to="/"><span aria-hidden="true">N</span>Nisaba</Link>
-        <Link className="nav-link" to="/app">Ver demonstração</Link>
-      </nav>
-
-      <section className="landing-hero">
-        <div className="hero-copy">
-          <span className="eyebrow">CLAREZA PARA A TRANSIÇÃO TRIBUTÁRIA</span>
-          <h1>Entenda o que muda antes que isso pese no seu negócio.</h1>
-          <p>A Nisaba organiza os dados que sua empresa já produz e os transforma em impacto, prioridade e cenários para decidir com mais contexto.</p>
-          <div className="actions">
-            <Link className="button" to="/app/onboarding">Começar minha análise <span aria-hidden="true">→</span></Link>
-            <Link className="button button--ghost" to="/app">Explorar demonstração</Link>
-          </div>
-          <small className="hero-disclaimer">Resultados explicáveis, com premissas e limitações visíveis.</small>
+    <main className="glow-primary relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-6 py-20 text-foreground">
+      <div className="fade-up mx-auto max-w-3xl text-center">
+        <div className="mb-8 flex justify-center">
+          <NisabaLogo />
         </div>
-        <div className="hero-visual" aria-label="Do registro à decisão">
-          <div className="visual-orbit visual-orbit--one" />
-          <div className="visual-orbit visual-orbit--two" />
-          <div className="insight-card insight-card--main"><span>PRÓXIMO PASSO</span><strong>Priorize o que merece atenção</strong><p>Compare cenários sem esconder as premissas usadas.</p><div className="mini-bars"><i /><i /><i /><i /></div></div>
-          <div className="insight-card insight-card--tag"><span>REGISTRO</span><strong>Dados organizados</strong></div>
-          <div className="insight-card insight-card--signal"><span>SINAL</span><strong>Impacto visível</strong></div>
-        </div>
-      </section>
 
-      <section className="value-strip" aria-label="Como a Nisaba ajuda">
-        <article><span>01</span><div><strong>Organize o presente</strong><p>Comece pelo perfil e pelos registros que você já tem.</p></div></article>
-        <article><span>02</span><div><strong>Enxergue o impacto</strong><p>Traduza complexidade em sinais para o negócio.</p></div></article>
-        <article><span>03</span><div><strong>Explore caminhos</strong><p>Simule decisões separando regras de premissas.</p></div></article>
-      </section>
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-2 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
+          <Sparkles className="h-3.5 w-3.5" />
+          Transição tributária
+        </span>
+
+        <h1 className="mt-6 text-balance font-display text-5xl font-semibold leading-[0.98] tracking-tight sm:text-6xl md:text-7xl">
+          Clareza no presente.
+          <br />
+          Previsão no futuro.
+        </h1>
+
+        <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+          Transforme dados fiscais em impacto, prioridade e cenários de decisão — antes que a
+          transição tributária pressione sua margem.
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Button asChild size="lg">
+            <Link to="/app/onboarding">
+              Começar análise <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+
+          <Button asChild size="lg" variant="outline">
+            <Link to="/app">Ver demonstração</Link>
+          </Button>
+        </div>
+
+        <p className="mt-8 text-xs text-muted-foreground">
+          A demonstração usa dados de exemplo — nenhum número representa uma regra fiscal real.
+        </p>
+      </div>
     </main>
   );
 }
