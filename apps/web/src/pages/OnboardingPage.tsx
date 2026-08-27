@@ -1,6 +1,8 @@
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 export function OnboardingPage() {
+  const navigate = useNavigate();
+
   return (
     <main className="page page--narrow">
       <span className="eyebrow">ETAPA 1</span>
@@ -10,23 +12,29 @@ export function OnboardingPage() {
         Não devemos pedir nem inferir campos sem saber como serão usados.
       </p>
 
-      <form className="form" onSubmit={(event) => event.preventDefault()}>
+      <form
+        className="form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          navigate("/app/simulations/new");
+        }}
+      >
         <label>
           CNPJ
-          <input placeholder="00.000.000/0000-00" />
+          <input name="cnpj" placeholder="00.000.000/0000-00" required />
         </label>
         <label>
           Regime
-          <select defaultValue="">
+          <select name="taxRegime" defaultValue="" required>
             <option value="" disabled>Selecione</option>
             <option>Simples Nacional</option>
             <option>Lucro Presumido</option>
             <option>Lucro Real</option>
           </select>
         </label>
-        <Link className="button" to="/app/simulations/new">
+        <button className="button" type="submit">
           Continuar
-        </Link>
+        </button>
       </form>
     </main>
   );
