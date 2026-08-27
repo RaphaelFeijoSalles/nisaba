@@ -1,6 +1,12 @@
 import { FormEvent, useMemo, useState } from "react";
 import { Link } from "react-router";
-import { completeOnboarding, type CompanyProfileDraft, type DataSourceChoice } from "../../services/onboarding";
+import {
+  completeOnboarding,
+  createCompany,
+  type CompanyProfileDraft,
+  type CreatedCompany,
+  type DataSourceChoice,
+} from "../../services/onboarding";
 
 const steps = ["Boas-vindas", "Sua empresa", "Seus dados", "Tudo pronto"];
 const initialProfile: CompanyProfileDraft = { companyName: "", taxId: "", taxRegime: "" };
@@ -16,8 +22,10 @@ function formatTaxId(value: string) {
 export function OnboardingFlow() {
   const [step, setStep] = useState(0);
   const [profile, setProfile] = useState(initialProfile);
+  const [createdCompany, setCreatedCompany] = useState<CreatedCompany | null>(null);
   const [dataSource, setDataSource] = useState<DataSourceChoice>("sample");
   const [fileName, setFileName] = useState("");
+  const [creatingCompany, setCreatingCompany] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -31,14 +39,35 @@ export function OnboardingFlow() {
     setStep((current) => Math.max(0, current - 1));
   }
 
-  function continueFromCompany(event: FormEvent<HTMLFormElement>) {
+  function updateProfile(change: Partial<CompanyProfileDraft>) {
+    setProfile((current) => ({ ...current, ...change }));
+    setCreatedCompany(null);
+    setError("");
+  }
+
+  async function continueFromCompany(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!companyIsValid) {
       setError("Revise os campos destacados para continuar.");
       return;
     }
+
+    if (createdCompany) {
+      setStep(2);
+      return;
+    }
+
+    setCreatingCompany(true);
     setError("");
-    setStep(2);
+    try {
+      const company = await createCompany(profile);
+      setCreatedCompany(company);
+      setStep(2);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Não foi possível criar a empresa.");
+    } finally {
+      setCreatingCompany(false);
+    }
   }
 
   async function finish(event: FormEvent<HTMLFormElement>) {
@@ -47,10 +76,15 @@ export function OnboardingFlow() {
       setError("Escolha um arquivo para continuar ou use os dados de demonstração.");
       return;
     }
+    if (!createdCompany) {
+      setStep(1);
+      setError("Crie a empresa antes de continuar.");
+      return;
+    }
     setSubmitting(true);
     setError("");
     try {
-      await completeOnboarding({ profile, dataSource, fileName: fileName || undefined });
+      completeOnboarding({ profile, dataSource, fileName: fileName || undefined, company: createdCompany });
       setStep(3);
     } catch {
       setError("Não foi possível preparar sua análise agora. Tente novamente.");
@@ -99,17 +133,17 @@ export function OnboardingFlow() {
             <h2>Conte o essencial sobre a empresa.</h2>
             <p>Esses dados contextualizam a análise. Eles não determinam, sozinhos, o tratamento tributário.</p>
             <div className="onboarding-form">
-              <label>Nome da empresa<input autoFocus value={profile.companyName} onChange={(event) => setProfile({ ...profile, companyName: event.target.value })} placeholder="Como devemos chamar sua empresa?" aria-invalid={Boolean(error) && profile.companyName.trim().length < 2} /></label>
-              <label>CNPJ<input inputMode="numeric" value={profile.taxId} onChange={(event) => setProfile({ ...profile, taxId: formatTaxId(event.target.value) })} placeholder="00.000.000/0000-00" aria-invalid={Boolean(error) && profile.taxId.replace(/\D/g, "").length !== 14} /></label>
+              <label>Nome da empresa<input autoFocus value={profile.companyName} onChange={(event) => updateProfile({ companyName: event.target.value })} placeholder="Como devemos chamar sua empresa?" aria-invalid={Boolean(error) && profile.companyName.trim().length < 2} /></label>
+              <label>CNPJ<input inputMode="numeric" value={profile.taxId} onChange={(event) => updateProfile({ taxId: formatTaxId(event.target.value) })} placeholder="00.000.000/0000-00" aria-invalid={Boolean(error) && profile.taxId.replace(/\D/g, "").length !== 14} /></label>
               <label>Regime tributário informado
-                <select value={profile.taxRegime} onChange={(event) => setProfile({ ...profile, taxRegime: event.target.value })} aria-invalid={Boolean(error) && !profile.taxRegime}>
+                <select value={profile.taxRegime} onChange={(event) => updateProfile({ taxRegime: event.target.value })} aria-invalid={Boolean(error) && (!profile.taxRegime || profile.taxRegime === "nao-sei")}>
                   <option value="" disabled>Selecione uma opção</option><option value="simples-nacional">Simples Nacional</option><option value="lucro-presumido">Lucro Presumido</option><option value="lucro-real">Lucro Real</option><option value="nao-sei">Ainda não sei</option>
                 </select>
                 <small>Se houver dúvida, marque “Ainda não sei”. A análise indicará que faltam dados.</small>
               </label>
             </div>
             {error && <p className="form-error" role="alert">{error}</p>}
-            <div className="step-actions"><button className="button button--ghost" type="button" onClick={goBack}>Voltar</button><button className="button" type="submit">Continuar <span aria-hidden="true">→</span></button></div>
+            <div className="step-actions"><button className="button button--ghost" type="button" onClick={goBack} disabled={creatingCompany}>Voltar</button><button className="button" type="submit" disabled={creatingCompany}>{creatingCompany ? "Criando empresa…" : <>Continuar <span aria-hidden="true">→</span></>}</button></div>
           </form>}
 
           {step === 2 && <form className="step-content" onSubmit={finish}>
