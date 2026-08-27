@@ -6,21 +6,26 @@ Nunca trabalhar diretamente em `main`.
 
 ```text
 main
-└── feat/nome-curto
-└── fix/nome-curto
-└── docs/nome-curto
-└── test/nome-curto
+└── hackathon/mvp                 somente integrador
+    ├── feat/HACK-xxx-nome-curto
+    ├── fix/HACK-xxx-nome-curto
+    ├── docs/HACK-xxx-nome-curto
+    ├── chore/HACK-xxx-nome-curto
+    └── spike/HACK-xxx-nome-curto
 ```
 
 Exemplos:
 
 ```text
-feat/company-onboarding
-feat/impact-chart
-feat/bling-adapter
-docs/pitch-story
-fix/simulation-validation
+feat/HACK-101-company-onboarding
+feat/HACK-102-impact-chart
+feat/HACK-103-bling-adapter
+docs/HACK-104-pitch-story
+fix/HACK-105-simulation-validation
 ```
+
+Durante o hackathon, somente o integrador atualiza `hackathon/mvp`. Ownership,
+hot files e handoff estão definidos em `docs/team/HACKATHON_WORKFLOW.md`.
 
 ## Tamanho de PR
 
@@ -48,7 +53,7 @@ Uma tarefa termina quando:
 - [ ] estados de erro foram tratados;
 - [ ] documentação foi atualizada;
 - [ ] nenhum segredo foi commitado;
-- [ ] PR explica hipóteses e limitações.
+- [ ] PR/handoff explica decisões, checks, pendências, riscos e integração.
 
 ## Regras tributárias
 

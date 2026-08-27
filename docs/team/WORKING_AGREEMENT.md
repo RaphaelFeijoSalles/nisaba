@@ -3,9 +3,15 @@
 ## Contexto
 
 A equipe possui níveis diferentes de experiência prática em desenvolvimento.
+Durante o hackathon, cinco workers (quatro Codex e um Claude) trabalham em cinco
+computadores a partir da mesma referência remota.
 
 Isso não é um motivo para concentrar tudo em uma pessoa. A arquitetura deve criar
 fronteiras para que cada pessoa consiga ser dona de uma entrega pequena e revisável.
+
+Para este período, **velocidade e integração > perfeição arquitetural**. O fluxo
+de branches, ownership, hot files, handoff e continuidade está em
+`docs/team/HACKATHON_WORKFLOW.md` e é vinculante para pessoas e agentes.
 
 ## Distribuição inicial sugerida
 
@@ -62,6 +68,7 @@ Cada pessoa recebe:
 5. arquivo de documentação correspondente.
 
 O agente de IA da pessoa deve ler `AGENTS.md` antes de gerar código.
+Cada tarefa também declara ownership de arquivos/diretórios antes do trabalho.
 
 ## Review
 
@@ -82,3 +89,6 @@ PR:
 ```
 
 Sem reunião longa por padrão.
+
+Ao concluir uma tarefa, use o handoff mínimo de
+`docs/team/HACKATHON_WORKFLOW.md`; a daily não substitui o handoff de integração.
