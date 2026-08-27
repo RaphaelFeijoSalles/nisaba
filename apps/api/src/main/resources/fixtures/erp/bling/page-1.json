@@ -1,0 +1,62 @@
+{
+  "data": [
+    {
+      "id": 9132456789,
+      "number": "NF-2026-1048",
+      "issueDate": "2026-08-20",
+      "contact": {
+        "name": "Padaria Aurora Ltda",
+        "document": "12345678000190"
+      },
+      "totals": {
+        "totalAmount": 1340.50,
+        "taxAmount": 214.73
+      },
+      "items": [
+        {
+          "sku": "SKU-CAF-500",
+          "description": "Cafe torrado 500g",
+          "quantity": 30,
+          "lineAmount": 567.00
+        },
+        {
+          "sku": "SKU-BIS-120",
+          "description": "Biscoito integral 120g",
+          "quantity": 45,
+          "lineAmount": 773.50
+        }
+      ]
+    },
+    {
+      "id": 9132456790,
+      "number": "NF-2026-1049",
+      "issueDate": "2026-08-21",
+      "contact": {
+        "name": "Mercado Ponte Nova ME",
+        "document": "99887766000155"
+      },
+      "totals": {
+        "totalAmount": 980.00,
+        "taxAmount": 156.31
+      },
+      "items": [
+        {
+          "sku": "SKU-ARZ-5KG",
+          "description": "Arroz branco 5kg",
+          "quantity": 20,
+          "lineAmount": 580.00
+        },
+        {
+          "sku": "SKU-FEJ-1KG",
+          "description": "Feijao carioca 1kg",
+          "quantity": 25,
+          "lineAmount": 400.00
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "hasNextPage": true,
+    "nextCursor": "page-2"
+  }
+}
