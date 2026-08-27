@@ -14,9 +14,7 @@ import { dashboardMock } from "@/mocks/dashboardMock";
  * do frontend, não uma definição fechada — precisa ser validada com quem
  * define os contratos técnicos (docs/team/WORKING_AGREEMENT.md).
  */
-export async function getDashboardSummary(
-  _companyId?: string,
-): Promise<DashboardSummary> {
+export async function getDashboardSummary(): Promise<DashboardSummary> {
   // TODO(backend): substituir por fetch(`/api/companies/${companyId}/dashboard-summary`)
   // quando o endpoint existir. Manter o mesmo shape de DashboardSummary.
   await simulateNetworkDelay();
