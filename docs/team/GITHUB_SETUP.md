@@ -119,6 +119,10 @@ Bypass não deve virar fluxo normal.
 
 ## 4. Estratégia de merge
 
+Durante o hackathon, branches `HACK-xxx` são entregues ao integrador; somente ele
+as incorpora em `hackathon/mvp`. O merge posterior em `main` segue a proteção e a
+revisão descritas neste documento. Veja `HACKATHON_WORKFLOW.md`.
+
 Habilitar:
 
 - `Squash merging`
@@ -159,10 +163,11 @@ O fluxo é:
 
 ```text
 issue/tarefa
-→ branch
+→ branch HACK-xxx com ownership
 → commits
 → PR
 → CI
 → review
-→ squash merge
+→ integração em hackathon/mvp pelo integrador
+→ PR revisada para main
 ```
