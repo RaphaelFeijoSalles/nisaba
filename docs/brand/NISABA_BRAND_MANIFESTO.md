@@ -90,6 +90,9 @@ Para storytelling de palco, opções 1 ou 2 têm maior personalidade.
 
 ## Direção visual
 
+As regras operacionais para interfaces e motion estão em
+`FRONTEND_DIRECTION.md`.
+
 ### Referências
 - estilete;
 - tábua;

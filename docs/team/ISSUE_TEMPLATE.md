@@ -10,6 +10,10 @@
 ## Fora do escopo
 - 
 
+## Ownership
+- diretórios/arquivos atribuídos:
+- hot files que exigem coordenação com o integrador:
+
 ## Arquivos/documentos que devem ser lidos
 - `AGENTS.md`
 - 
@@ -30,3 +34,6 @@
 
 ## Dependências/bloqueios
 - 
+
+## Branch
+`feat|fix|docs|chore|spike/HACK-xxx-descricao-curta`

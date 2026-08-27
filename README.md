@@ -53,6 +53,7 @@ docs/
   team/
 
 rules/                  especificações versionadas das regras
+.project/               continuidade operacional do hackathon
 .github/                CI, CODEOWNERS e templates
 ```
 
@@ -65,10 +66,14 @@ Leia:
 3. `docs/product/SCOPE.md`
 4. `docs/engineering/ARCHITECTURE.md`
 5. `docs/team/WORKING_AGREEMENT.md`
+6. `docs/team/HACKATHON_WORKFLOW.md`
 
 Para alteração fiscal:
-6. `docs/engineering/TAX_RULE_POLICY.md`
-7. `rules/README.md`
+7. `docs/engineering/TAX_RULE_POLICY.md`
+8. `rules/README.md`
+
+Para alteração visual relevante:
+- `docs/brand/FRONTEND_DIRECTION.md`
 
 ## Rodando o frontend
 
