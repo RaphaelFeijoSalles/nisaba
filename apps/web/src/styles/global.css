@@ -1,177 +1,247 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Sistema de design — Nisaba
+ * -----------------------------------------------------------------------
+ * Paleta derivada do manifesto de marca (docs/brand/NISABA_BRAND_MANIFESTO.md):
+ *   - azul lápis-lazúli profundo como cor institucional (confiança, contas);
+ *   - terracota como cor de sinalização (o que "merece atenção primeiro");
+ *   - neutros modernos, sem estética literal de "civilização antiga".
+ *
+ * Duas variantes convivem no mesmo token set:
+ *   :root  -> tema claro, usado nas telas públicas/onboarding (page--light);
+ *   .dark  -> tema escuro, usado no shell autenticado (AppShell/Dashboard).
+ * A cor primária troca de papel entre os temas (ver ADR "Sistema visual Nisaba"
+ * em docs/engineering/ADR.md): no claro, azul lidera; no escuro, terracota lidera
+ * como cor de ação/atenção sobre o fundo neutro escuro.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.06), 0 12px 28px -16px oklch(0 0 0 / 0.18);
+  --shadow-glow: 0 0 0 1px var(--primary-soft), 0 18px 46px -22px var(--primary-soft);
+}
+
+/* Tema claro — landing, onboarding, formulários públicos */
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  color: #17202a;
-  background: #f6f3ed;
-  font-synthesis: none;
+  --radius: 0.875rem;
+
+  --background: oklch(0.97 0.014 80);
+  --foreground: oklch(0.22 0.02 255);
+
+  --card: oklch(0.995 0.006 80);
+  --card-foreground: oklch(0.22 0.02 255);
+  --popover: oklch(0.995 0.006 80);
+  --popover-foreground: oklch(0.22 0.02 255);
+
+  /* Azul lápis-lazúli institucional */
+  --primary: oklch(0.35 0.08 255);
+  --primary-foreground: oklch(0.99 0.005 80);
+  --primary-soft: oklch(0.35 0.08 255 / 0.1);
+
+  /* Terracota — sinalização/atenção */
+  --secondary: oklch(0.62 0.13 45);
+  --secondary-foreground: oklch(0.99 0.005 80);
+
+  --muted: oklch(0.93 0.014 75);
+  --muted-foreground: oklch(0.46 0.02 250);
+  --accent: oklch(0.93 0.02 60);
+  --accent-foreground: oklch(0.3 0.05 255);
+
+  --destructive: oklch(0.58 0.21 26);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.58 0.13 155);
+  --warning: oklch(0.72 0.15 75);
+
+  --border: oklch(0.88 0.016 75);
+  --input: oklch(0.88 0.016 75);
+  --ring: oklch(0.35 0.08 255 / 0.4);
+
+  --surface: oklch(0.995 0.006 80);
+  --surface-2: oklch(0.95 0.014 75);
+
+  --chart-1: oklch(0.35 0.08 255);
+  --chart-2: oklch(0.62 0.13 45);
+  --chart-3: oklch(0.58 0.13 155);
+  --chart-4: oklch(0.72 0.15 75);
+  --chart-5: oklch(0.58 0.21 26);
+
+  --sidebar: oklch(0.995 0.006 80);
+  --sidebar-foreground: oklch(0.46 0.02 250);
+  --sidebar-primary: oklch(0.35 0.08 255);
+  --sidebar-primary-foreground: oklch(0.99 0.005 80);
+  --sidebar-accent: oklch(0.93 0.014 75);
+  --sidebar-accent-foreground: oklch(0.22 0.02 255);
+  --sidebar-border: oklch(0.88 0.016 75);
+  --sidebar-ring: oklch(0.35 0.08 255 / 0.4);
 }
 
-* {
-  box-sizing: border-box;
+/* Tema escuro — shell autenticado (AppShell/Dashboard/Simulação) */
+:root.dark,
+.dark {
+  --background: oklch(0.181 0.006 264);
+  --foreground: oklch(0.98 0.004 80);
+
+  --card: oklch(0.216 0.007 264);
+  --card-foreground: oklch(0.98 0.004 80);
+  --popover: oklch(0.216 0.007 264);
+  --popover-foreground: oklch(0.98 0.004 80);
+
+  /* Terracota lidera no app: é a cor de ação e de "isto merece atenção" */
+  --primary: oklch(0.7 0.14 46);
+  --primary-foreground: oklch(0.16 0.01 60);
+  --primary-soft: oklch(0.7 0.14 46 / 0.14);
+
+  /* Azul institucional vira apoio (séries "atuais", estados neutros) */
+  --secondary: oklch(0.4 0.075 253);
+  --secondary-foreground: oklch(0.97 0.01 240);
+
+  --muted: oklch(0.246 0.008 264);
+  --muted-foreground: oklch(0.81 0.018 260);
+  --accent: oklch(0.27 0.012 264);
+  --accent-foreground: oklch(0.98 0.004 80);
+
+  --destructive: oklch(0.62 0.212 25.5);
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.72 0.15 155);
+  --warning: oklch(0.79 0.15 80);
+
+  --border: oklch(0.288 0.008 264);
+  --input: oklch(0.288 0.008 264);
+  --ring: oklch(0.7 0.14 46 / 0.55);
+
+  --surface: oklch(0.216 0.007 264);
+  --surface-2: oklch(0.246 0.008 264);
+
+  --chart-1: oklch(0.7 0.14 46);
+  --chart-2: oklch(0.55 0.09 253);
+  --chart-3: oklch(0.72 0.15 155);
+  --chart-4: oklch(0.79 0.15 80);
+  --chart-5: oklch(0.62 0.212 25.5);
+
+  --sidebar: oklch(0.196 0.007 264);
+  --sidebar-foreground: oklch(0.81 0.018 260);
+  --sidebar-primary: oklch(0.7 0.14 46);
+  --sidebar-primary-foreground: oklch(0.16 0.01 60);
+  --sidebar-accent: oklch(0.246 0.008 264);
+  --sidebar-accent-foreground: oklch(0.98 0.004 80);
+  --sidebar-border: oklch(0.288 0.008 264);
+  --sidebar-ring: oklch(0.7 0.14 46 / 0.55);
 }
 
-body {
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.page {
-  min-height: 100vh;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 48px 32px;
-}
-
-.page--center {
-  display: grid;
-  place-items: center;
-}
-
-.page--narrow {
-  max-width: 760px;
-}
-
-.hero {
-  max-width: 760px;
-}
-
-.hero h1,
-.page h1 {
-  font-size: clamp(2.6rem, 7vw, 5.6rem);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
-  margin: 12px 0 24px;
-}
-
-.page--narrow h1,
-.topbar h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-}
-
-.hero p,
-.page p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #56606b;
-}
-
-.eyebrow {
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #154c79;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 18px;
-  background: #173f5f;
-  color: white;
-  border-radius: 10px;
-  font-weight: 700;
-}
-
-.button--ghost {
-  color: #173f5f;
-  background: transparent;
-  border: 1px solid #bfc7ce;
-}
-
-.topbar {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 28px 0;
-}
-
-.card,
-.panel {
-  background: #fffdf9;
-  border: 1px solid #dfd9cf;
-  border-radius: 16px;
-  padding: 22px;
-}
-
-.card {
-  display: grid;
-  gap: 12px;
-}
-
-.card span {
-  color: #6d737a;
-}
-
-.card strong {
-  font-size: 2.4rem;
-}
-
-.chart {
-  height: 320px;
-  margin-top: 24px;
-  color: #173f5f;
-}
-
-.notice {
-  padding: 12px 16px;
-  background: #eee8dc;
-  border-radius: 10px;
-  font-size: 0.92rem !important;
-}
-
-.form {
-  margin-top: 30px;
-  display: grid;
-  gap: 20px;
-}
-
-label {
-  display: grid;
-  gap: 8px;
-  font-weight: 700;
-}
-
-input,
-select {
-  width: 100%;
-  min-height: 44px;
-  border: 1px solid #c7c2ba;
-  border-radius: 9px;
-  background: white;
-  padding: 10px 12px;
-  font: inherit;
-}
-
-@media (max-width: 720px) {
-  .page {
-    padding: 28px 20px;
+@layer base {
+  * {
+    border-color: var(--border);
   }
 
-  .cards {
-    grid-template-columns: 1fr;
+  html {
+    color-scheme: light;
   }
 
-  .topbar {
-    flex-direction: column;
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-synthesis: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility glow-primary {
+  background-image: radial-gradient(
+    60% 80% at 50% 0%,
+    var(--primary-soft) 0%,
+    transparent 70%
+  );
+}
+
+@utility fade-up {
+  animation: nisaba-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility fade-up-stagger {
+  animation: nisaba-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--stagger-index, 0) * 60ms);
+}
+
+@keyframes nisaba-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
