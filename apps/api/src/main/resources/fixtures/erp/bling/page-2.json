@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "id": 9132456791,
+      "number": "NF-2026-1050",
+      "issueDate": "2026-08-22",
+      "contact": {
+        "name": "Distribuidora Serra Azul SA",
+        "document": "44556677000112"
+      },
+      "totals": {
+        "totalAmount": 2480.90,
+        "taxAmount": 396.94
+      },
+      "items": [
+        {
+          "sku": "SKU-LEI-1L",
+          "description": "Leite integral 1L",
+          "quantity": 80,
+          "lineAmount": 1272.00
+        },
+        {
+          "sku": "SKU-MAN-500",
+          "description": "Manteiga 500g",
+          "quantity": 35,
+          "lineAmount": 1208.90
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "hasNextPage": false,
+    "nextCursor": null
+  }
+}
