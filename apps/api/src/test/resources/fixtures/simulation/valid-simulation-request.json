@@ -1,0 +1,17 @@
+{
+  "companyId": 1,
+  "targetYear": 2027,
+  "userPriceAdjustmentPercent": 5.0,
+  "priorityMetric": "ABSOLUTE_MARGIN_IMPACT",
+  "items": [
+    {
+      "itemId": "SKU-1",
+      "description": "Linha demonstrativa",
+      "currentRevenue": 1000.0,
+      "currentCost": 600.0,
+      "currentTaxAmount": 100.0,
+      "projectedCost": 600.0,
+      "projectedTaxAmount": 140.0
+    }
+  ]
+}

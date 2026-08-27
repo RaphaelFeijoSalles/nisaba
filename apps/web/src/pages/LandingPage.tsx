@@ -34,6 +34,7 @@ export function LandingPage() {
               Começar análise <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
+
           <Button asChild size="lg" variant="outline">
             <Link to="/app">Ver demonstração</Link>
           </Button>
