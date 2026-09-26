@@ -22,6 +22,23 @@ priorização
 cenários de decisão
 ```
 
+## Origem do projeto
+
+O Nisaba nasceu em um hackathon de curta duração, desenvolvido sob a restrição de uma única manhã como exercício de produto e engenharia aplicado ao contexto contábil e tributário brasileiro.
+
+Durante o hackathon, Raphael Feijó Salles coordenou a direção técnica da equipe, ajudando a transformar regras e necessidades do domínio contábil em requisitos de produto, arquitetura e fluxo de implementação.
+
+O desafio não era simplesmente criar uma calculadora de impostos, mas estruturar um sistema capaz de transformar dados fiscais em cenários de impacto financeiro rastreáveis e úteis para a tomada de decisão de pequenas e médias empresas.
+
+O MVP foi estruturado com:
+
+- **Backend:** Java, Spring Boot, Maven, Spring Data JPA, Spring Security e PostgreSQL;
+- **Frontend:** React, TypeScript, Vite, React Router, TanStack Query e Recharts;
+- **Produto e domínio:** normalização de dados, regras versionadas, simulação, análise de impacto financeiro e comparação de cenários;
+- **Coordenação técnica:** definição de arquitetura, organização do fluxo de trabalho e priorização do escopo sob forte restrição de tempo.
+
+Mais do que a quantidade de funcionalidades entregues, o projeto demonstra a capacidade de traduzir um problema de negócio em uma solução técnica estruturada, coordenar decisões em equipe e construir uma base evolutiva sob pressão de tempo.
+
 ## Regra de ouro
 
 **Nenhum número crítico existe sem rastreabilidade.**
